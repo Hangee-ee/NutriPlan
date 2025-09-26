@@ -7,6 +7,18 @@
  - Search functionality
  - Filter functionality
 
+### Home Page
+<img src="NutriPlan/Screenshots/HomePage.PNG" alt="HomePage" width="400">
+
+### Ingredient Page
+<img src="NutriPlan/Screenshots/IngredientsPage.PNG" alt="IngredientsPage" width="400">
+<img src="NutriPlan/Screenshots/FilterSystem.PNG" alt="FilterSystem" width="400">
+<img src="NutriPlan/Screenshots/AddIngredient.PNG" alt="AddIngredient" width="400">
+
+### Recipes Page
+<img src="NutriPlan/Screenshots/RecipesPage.PNG" alt="RecipesPage" width="400">
+<img src="NutriPlan/Screenshots/AddRecipe.PNG" alt="AddRecipe" width="400">
+
 ## Technologies
   - ASP.NET MVC
   - Entity Framework
