@@ -1,0 +1,24 @@
+﻿@model NutriPlan.Models.Recipe
+
+<h2>Movie Details</h2>
+<p><strong>ID:</strong> @Model.RecipeId</p>
+<p><strong>Name:</strong> @Model.Name</p>
+<p><strong>Type:</strong> @Model.Type</p>
+<p>
+    <strong>Ingredients:</strong>
+    @if (Model.RecipeIngredients != null && Model.RecipeIngredients.Any())
+    {
+        <ul>
+            @foreach (var ri in Model.RecipeIngredients)
+            {
+                <li>@ri.Ingredient.Name</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <span>This feature is currently unavailable :(</span>
+    }
+</p>
+
+<a asp-action="Index">Back to List</a>

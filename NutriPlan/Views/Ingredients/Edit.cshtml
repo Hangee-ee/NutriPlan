@@ -1,0 +1,26 @@
+﻿@model NutriPlan.Models.Ingredient
+@{
+    ViewData["Title"] = "Edit Ingredient";
+}
+
+<h2>Edit Ingredient</h2>
+<form class="form-check-inline" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="IngredientId" />
+    <div class="mb-3">
+        <label>Name:</label>
+        <input asp-for = "Name" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label>Calories per 100g:</label>
+        <input asp-for = "Calories" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label>Type:</label>
+        <select asp-for="Type" asp-items="Html.GetEnumSelectList<IngredientType>()" class="form-select"></select>
+    </div>
+
+
+    <button type="submit" class="btn btn-success me-2">Save</button>
+    <a asp-action="Index" class="btn btn-danger">Go Back</a>
+</form>
+

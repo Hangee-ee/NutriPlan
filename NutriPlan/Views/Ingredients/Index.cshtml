@@ -1,0 +1,71 @@
+﻿@model IEnumerable<NutriPlan.Models.Ingredient>
+
+@{
+    ViewData["Title"] = "All ingredients";
+}
+
+<a asp-action="Create" class="btn btn-success mb-3">Add New Ingredient</a>
+
+<div class="row sm-6">
+    @* Search field *@
+    <div class="col md-6">
+        <form class="d-flex" asp-action="Index" asp-controller="Ingredients">
+
+            @* filter *@
+            <select name="typeFilter" class="form-select me-2" style="height: 40px;">
+                <option value="">All Types</option>
+                @foreach (var type in Enum.GetValues(typeof(NutriPlan.Models.IngredientType)))
+                {
+                    var selectedType = ViewData["SelectedType"] as NutriPlan.Models.IngredientType?;
+                    <option value="@type" selected="@(selectedType == (NutriPlan.Models.IngredientType)type)">
+                        @type
+                    </option>
+                }
+            </select>
+
+            <input name="searchString" class="form-control me-1" style="height: 40px;" type="search" placeholder="Search" aria-label="Search"></input>
+            <button class="btn btn-dark" type="submit" style="height: 40px;">Search</button>
+        </form>
+    </div>
+
+
+    @* go back button *@
+    <div class="col md-6">
+        <a asp-action="Index" class="text-dark">Back to Full List</a>
+    </div>
+</div>
+
+
+<table class="table">
+
+    @* table header *@
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Calories (per 100g)</th>
+        </tr>
+    </thead>
+
+    @* Body *@
+    <tbody>
+        @foreach (var ingredient in Model)
+        {
+            <tr>
+                <td>@ingredient.IngredientId</td>
+                <td>@ingredient.Name</td>
+                <td>@ingredient.Type</td>
+                <td>@ingredient.Calories</td>
+                <td><a asp-controller="Ingredients" asp-action = "Edit" asp-route-ingredientId="@ingredient.IngredientId" class = "btn btn-primary btn-sm">Edit</a></td>
+                <td>
+                <form asp-action="Delete" asp-route-ingredientId="@ingredient.IngredientId" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+

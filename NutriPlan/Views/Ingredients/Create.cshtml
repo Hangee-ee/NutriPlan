@@ -1,0 +1,29 @@
+﻿@model NutriPlan.Models.Ingredient
+@using NutriPlan.Controllers
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add Ingredient";
+}
+
+<h2>Add New Ingredient</h2>
+<form class = "form-check-inline" asp-action="Create" method="post">
+    <div class="mb-3">
+    <label>Name:</label>
+        <input type="text" name="name" class="form-control" required></input>
+    </div>
+    <div class="mb-3">
+    <label>Calories per 100g:</label>
+        <input type="number" name="calories" class="form-control"></input>
+    </div>
+    <div class="mb-3">
+    <label>Type:</label>
+        <select asp-for="Type" asp-items="Html.GetEnumSelectList<IngredientType>()" class="form-select"></select>
+    </div>
+
+
+    <button type ="submit" class="btn btn-success me-2">Add Ingredient</button>
+    <a asp-action="Index" class="btn btn-danger">Go Back</a>
+</form>
+

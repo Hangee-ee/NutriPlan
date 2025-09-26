@@ -1,0 +1,59 @@
+﻿@model IEnumerable<NutriPlan.Models.Recipe>
+
+@{
+    ViewData["Title"] = "All Recipes";
+}
+
+<a asp-controller= "Recipe" asp-action="Create" class="btn btn-success mb-3">Create Recipe</a>
+
+<div class="row sm-6">
+@* Search field *@
+    <div class="col md-6">
+        <form class="d-flex" asp-action="Index" asp-controller="Recipe">
+
+            @* filter *@
+            <select name="typeFilter" class="form-select me-2" style="height: 40px;">
+                <option value="">All Types</option>
+                @foreach (var type in Enum.GetValues(typeof(NutriPlan.Models.RecipeType)))
+                {
+                    var selectedType = ViewData["SelectedType"] as NutriPlan.Models.RecipeType?;
+                    <option value="@type" selected="@(selectedType == (NutriPlan.Models.RecipeType)type)">
+                        @type
+                    </option>
+                }
+            </select>
+
+            <input name="searchString" class="form-control me-1" style="height: 40px;" type="search" placeholder="Search" aria-label="Search"></input>
+            <button class="btn btn-dark" type="submit" style="height: 40px;">Search</button>
+        </form>
+    </div>
+@* go back button *@
+    <div class="col md-6">
+        <a asp-action="Index" class="text-dark">Back to Full List</a>
+    </div>
+<table class="table">
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var recipe in Model)
+        {
+            <tr>
+                <td>@recipe.RecipeId</td>
+                <td>@recipe.Name</td>
+                <td>@recipe.Type</td>
+                <td>
+                <a asp-action="Details" asp-route-recipeID="@recipe.RecipeId" class="btn btn-primary">Details</a>
+                <form asp-action="Delete" asp-route-recipeId="@recipe.RecipeId" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
